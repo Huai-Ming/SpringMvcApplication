@@ -1,14 +1,8 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Knockout JS";
+    Layout = "~/Views/Shared/_KnockoutJsLayout.cshtml";
 }
-@Styles.Render("~/Content/css")
-@Scripts.Render("~/bundles/modernizr")
-@Scripts.Render("~/bundles/jquery")
-
-@Scripts.Render("~/bundles/knockout")
-
-
 <h2>Index</h2>
 
 <p>First name: <strong data-bind="text: firstName"></strong></p>
