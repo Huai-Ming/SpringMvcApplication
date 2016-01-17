@@ -19,6 +19,13 @@ namespace Console.Controllers
         {
             return View();
         }
+
+        public ActionResult SinglePage()
+        {
+            return View();
+        }
+
+        
         
 	}
 }

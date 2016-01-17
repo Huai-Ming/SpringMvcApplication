@@ -1,0 +1,87 @@
+﻿
+@{
+    ViewBag.Title = "SinglePage";
+    Layout = "~/Views/Shared/_KnockoutJsLayout.cshtml";
+}
+<ul data-bind="foreach: folders" class="folders">
+    <li data-bind="text: $data,
+               css: { selected: $data == $root.chosenFolderId() },
+               click: $root.goToFolder"></li>
+</ul>
+
+<table class="mails" data-bind="with: chosenFolderData">
+    <thead><tr><th>From</th><th>To</th><th>Subject</th><th>Date</th></tr></thead>
+    <tbody data-bind="foreach: mails">
+        <tr data-bind="click: $root.goToMail">
+            <td data-bind="text: From"></td>
+            <td data-bind="text: To"></td>
+            <td data-bind="text: Subject"></td>
+            <td data-bind="text: Date"></td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="viewMail" data-bind="with: chosenMailData">
+    <div class="mailInfo">
+        <h1 data-bind="text: Subject"></h1>
+        <p><label>From</label>: <span data-bind="text: From"></span></p>
+        <p><label>To</label>: <span data-bind="text: To"></span></p>
+        <p><label>Date</label>: <span data-bind="text: Date"></span></p>
+    </div>
+    <p class="message" data-bind="html: MessageContent" />
+</div>
+<script>
+    $(function () {
+        function WebmailViewModel() {
+            // Data
+            var self = this;
+            self.folders = ['Inbox', 'Archive', 'Sent', 'Spam'];
+            self.chosenFolderId = ko.observable();
+            self.chosenFolderData = ko.observable();
+            self.chosenMailData = ko.observable();
+
+            // Behaviours
+            self.goToFolder = function (folder) {
+                self.chosenFolderId(folder);
+                self.chosenMailData(null); // Stop showing a mail
+                $.ajax({
+                    type: "Get",
+                    url: '../api/Mail/Get',
+                    //datatype: 'json',
+                    async: false,
+                    contentType: "application/json",
+                    data: { folder: folder },
+                    complete: function () {
+                    },
+                    success: function (datare) {
+                        self.chosenFolderData({ mails:datare});
+                    }
+                });
+                //$.get('../api/Mail', { folder: folder }, self.chosenFolderData);
+            };
+
+            self.goToMail = function (mail) {
+                self.chosenFolderId(mail.folder);
+                self.chosenFolderData(null); // Stop showing a folder
+                $.ajax({
+                    type: "Get",
+                    url: '../api/Mail/GetMailById',
+                    //datatype: 'json',
+                    async: false,
+                    contentType: "application/json",
+                    data: { mailId: mail.Id },
+                    complete: function () {
+                    },
+                    success: function (datare) {
+                        self.chosenMailData(datare);
+                    }
+                });
+                //$.get("/mail", { mailId: mail.id }, self.chosenMailData);
+            };
+
+            self.goToFolder('Inbox');
+        };
+
+        ko.applyBindings(new WebmailViewModel());
+    });
+</script>

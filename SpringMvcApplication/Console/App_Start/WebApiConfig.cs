@@ -14,10 +14,22 @@ namespace Console
             // Web API routes
             config.MapHttpAttributeRoutes();
 
+            //config.Routes.MapHttpRoute(
+            //    name: "DefaultApi",
+            //    routeTemplate: "api/{controller}/{id}",
+            //    defaults: new { id = RouteParameter.Optional }
+            //);
+
             config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
+            name: "Get",
+            routeTemplate: "api/{controller}/Get/{folder}",
+            defaults: new { folder = RouteParameter.Optional }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "GetMailById",
+                routeTemplate: "api/{controller}/GetMailById/{mailId}",
+                defaults: new { mailId = RouteParameter.Optional }
             );
         }
     }
