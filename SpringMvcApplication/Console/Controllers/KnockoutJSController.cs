@@ -14,5 +14,11 @@ namespace Console.Controllers
         {
             return View();
         }
+
+        public ActionResult ListAndCollections()
+        {
+            return View();
+        }
+        
 	}
 }
