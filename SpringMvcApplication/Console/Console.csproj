@@ -173,6 +173,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BootstrapController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KnockoutJSController.cs" />
     <Compile Include="Global.asax.cs">
@@ -237,6 +238,8 @@
     <Content Include="Views\Shared\_KnockoutJsLayout.cshtml" />
     <Content Include="Views\KnockoutJS\ListAndCollections.cshtml" />
     <Content Include="Views\KnockoutJS\SinglePage.cshtml" />
+    <Content Include="Views\Shared\_BootstrapLayout.cshtml" />
+    <Content Include="Views\Bootstrap\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
