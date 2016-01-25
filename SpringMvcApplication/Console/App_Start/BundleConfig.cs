@@ -16,7 +16,9 @@ namespace Console
 
             bundles.Add(new ScriptBundle("~/bundles/knockout").Include(
                     "~/Scripts/knockout-{version}.js",
-                    "~/Scripts/knockout.mapping-latest.js"));
+                    
+                    "~/Scripts/knockout.mapping-latest.js",
+                    "~/Scripts/lib/sammy.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
                  "~/Scripts/AngularJS/app.js",    
