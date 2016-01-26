@@ -1,0 +1,15 @@
+﻿@*A view template should never perform business logic or interact with a database directly.*@ 
+@*Maintaining this "separation of concerns" helps keep your code clean, testable and more maintainable.*@
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    //ViewBag is a dynamic object, which means you can put whatever you want in to it; the ViewBag object 
+    //has no defined properties until you put something inside it
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>Hello from our View Template!</p>
